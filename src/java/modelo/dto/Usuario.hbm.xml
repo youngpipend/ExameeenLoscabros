@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-dic-2018 13:18:24 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.dto.Usuario" table="usuario" catalog="autopark" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tipousuario" class="modelo.dto.Tipousuario" fetch="select">
+            <column name="id_tipousu" not-null="true" />
+        </many-to-one>
+        <property name="user" type="string">
+            <column name="user" length="25" not-null="true" />
+        </property>
+        <property name="pass" type="string">
+            <column name="pass" length="25" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="25" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="25" not-null="true" />
+        </property>
+        <property name="telefono" type="int">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" not-null="true" />
+        </property>
+        <one-to-one name="cliente" class="modelo.dto.Cliente"></one-to-one>
+    </class>
+</hibernate-mapping>
