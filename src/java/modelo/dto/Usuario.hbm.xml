@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-12-2018 23:41:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.dto.Usuario" table="usuario" catalog="autopark" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tipousuario" class="modelo.dto.Tipousuario" fetch="select">
+            <column name="tipo_usu" />
+        </many-to-one>
+        <property name="user" type="string">
+            <column name="user" length="25" />
+        </property>
+        <property name="pass" type="string">
+            <column name="pass" length="25" />
+        </property>
+        <property name="rut" type="java.lang.Integer">
+            <column name="rut" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="25" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="25" />
+        </property>
+        <property name="telefono" type="java.lang.Integer">
+            <column name="telefono" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="25" />
+        </property>
+        <set name="compras" table="compra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="rut" />
+            </key>
+            <one-to-many class="modelo.dto.Compra" />
+        </set>
+    </class>
+</hibernate-mapping>

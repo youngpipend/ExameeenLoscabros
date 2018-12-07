@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-12-2018 23:41:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.dto.Compra" table="compra" catalog="autopark" optimistic-lock="version">
+        <id name="idCompra" type="java.lang.Integer">
+            <column name="id_compra" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="modelo.dto.Usuario" fetch="select">
+            <column name="rut" />
+        </many-to-one>
+        <property name="montoTotal" type="java.lang.Integer">
+            <column name="monto_total" />
+        </property>
+        <property name="pagado" type="java.lang.Boolean">
+            <column name="pagado" />
+        </property>
+        <property name="medioPago" type="java.lang.Integer">
+            <column name="medio_pago" />
+        </property>
+        <property name="medioEnvio" type="java.lang.Integer">
+            <column name="medio_envio" />
+        </property>
+        <set name="boletas" table="boleta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_compra" />
+            </key>
+            <one-to-many class="modelo.dto.Boleta" />
+        </set>
+    </class>
+</hibernate-mapping>
